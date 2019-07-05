@@ -1,0 +1,8 @@
+to run heroku on remote mysql server
+1 go to rev val in setting of heroku app
+2. add SHARED_DATABASE_URL=mysql://dbusename:dbpassword@dbip:3306/dbname
+3. run Heroku restart
+4. Now run heroku addons:destroy heroku-postgresql -a ajarwall
+5. Now run heroku config:set DATABASE_URL=mysql://dbusename:dbpassword@dbip:3306/dbname
+6. run Heroku restart
+7. add del DATABASES['default']['OPTIONS']['sslmode'] after django_heroku.settings(locals()) in settings.py
