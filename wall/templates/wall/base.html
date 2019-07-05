@@ -1,0 +1,154 @@
+{% load static %}
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+         <link rel = "icon" type="image/png" href="https://gp3.googleusercontent.com/VVFp7c_a64jDe2kfSQ8Wi-NXKuyGHyXGButEofpEp4aAIlucxfJhRgtpfQlf4hQ9o3I7Rmb78NlvwZzxGlInSqc6CWHk5rPZjFPNBX393PDCBUiWFM-c8WKXeowfoGjXbLzPmmEk=s32-p-k" >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        {% block title %}
+        <title>AJARWALL</title>
+        {% endblock %}
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <script src="{% static 'js/flickity.pkgd.min.js' %}" ></script>
+        <link rel="stylesheet" href="{% static 'css/flickity.css' %}">
+        <link rel="stylesheet" href="{% static 'css/drop_style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/noJS.css' %}">
+        <script src="{% static 'js/jquery.lazy.js' %}" ></script>
+        <script src="{% static 'js/modernizr.custom.79639.js' %}" ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% block meta_data %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="application-name" content="ajarwall,ajar,Ajar">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="ajarwall,ajar,Ajar">
+        <meta name="msapplication-TileImage" content="">
+        <meta name="msapplication-TileColor" content="#171717">
+        <meta name="theme-color" content="#171717">
+        <meta name="description" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta name="description" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta name="robots" content="index, follow">
+        <meta property="og:url" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta property="og:title" content="Ajarwall | A Jar Of Wallpapers">
+        <meta property="og:description" content="Ajarwall is the collection of the best images website it has over a 500000 images ">
+        <meta property="og:site_name" content="ajarwall">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://gp3.googleusercontent.com/4yA6-ZYoccZf7oAr1l3v4JFjv6-coiJuCoH0yc4RcilS8jxohJuwxfBTSsVA9hLJ-f-6yVPtckUefivO8k2h9v5wR10_k5jqZlnQeWDI183kOKPrJv-4xwOaXq6hUgYMSpinebrf=w1920-h1080">
+        <meta property="og:image:width" content="450">
+        <meta property="og:image:height" content="350">
+        <meta property="og:image:type" content="image/jpeg">
+        <meta http-equiv="content-language" content="en">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        {% endblock %}
+        <!--end-->
+    </head>
+            <body>
+        <!-- Always shows a header, even in smaller screens. -->
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+                <header id="mdl-layout__header" class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <a id="mdl-navigation__link" class="title mdl-navigation__link" href="{% url 'wall:home_page' %}">AJARWALL</a>                      <!-- Navigation. We hide it in small screens. -->
+                    <nav id="mdl-layout--large-screen-only" class="mdl-navigation mdl-layout--large-screen-only">
+                    <a id="mdl-navigation__link" class=" mdl-navigation__link" href="{% url 'wall:home_page' %}">Home</a>
+                    <a id="mdl-navigation__link" class=" mdl-navigation__link" href="{% url 'wall:catlog_page' %}">Collection</a>
+                    <a id="mdl-navigation__link" class="mdl-navigation__link" href="{% url 'wall:images_page' %}">All Photos</a>
+                    <a id="mdl-navigation__link" class="mdl-navigation__link" href="{% url 'wall:explore_page' %}">Explore</a>
+                    </nav>
+                    <div class="search-container">
+                      <form action="{% url 'wall:search' %}" method="GET">
+                          <input class="search expandright" id="searchright" type="search" value="{{request.GET.q}}" name="q" placeholder="Search" autocomplete="off">
+                        <label id="search_button" class="button_search searchbutton" for="searchright"><span class="mglass">&#9906;</span></label>
+                         <div class="mdl-tooltip" data-mdl-for="search_button" style="background:#000;">Search</div>
+                      </form>
+                    </div>
+                </div>
+                </header>
+                <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+                        <a id="mdl-navigation__link" class="title mdl-navigation__link" href="{% url 'wall:home_page' %}">AJARWALL</a>
+                        <nav class="mdl-navigation">
+                                <a id="mdl-navigation__link" class=" mdl-navigation__link" href="{% url 'wall:home_page' %}">Home</a>
+                                <a id="mdl-navigation__link" class=" mdl-navigation__link" href="{% url 'wall:catlog_page' %}">Collection</a>
+                                <a id="mdl-navigation__link" class="mdl-navigation__link" href="{% url 'wall:images_page' %}">All Photos</a>
+                                <a id="mdl-navigation__link" class="mdl-navigation__link" href="{% url 'wall:explore_page' %}">Explore</a>
+                        </nav>
+                      </div>
+            {% block main_content %}
+            {% endblock %}
+               <!--footer starts-->
+                <footer class="mdl-mini-footer" style="background:#000;">
+                        <div class="mdl-mini-footer__left-section">
+                            <a id="mdl-navigation__link" class="title mdl-navigation__link" href="{% url 'wall:home_page'%}">AJARWALL</a>
+                          <ul class="mdl-mini-footer__link-list">
+                            <!--<li><a href="#">Help</a></li>-->
+                            <!--<li><a href="#">Privacy & Terms</a></li>-->
+                          </ul>
+                        </div>
+                      </footer>
+                    <!--footer ends-->
+                </main>
+            </div>
+
+            <!--<script type="text/javascript">-->
+                <!--/*Dropdown Menu*/-->
+        <!--$('.dropdown').click(function () {-->
+                <!--$(this).attr('tabindex', 1).focus();-->
+                <!--$(this).toggleClass('active');-->
+                <!--$(this).find('.dropdown-menu').slideToggle(300);-->
+            <!--});-->
+            <!--$('.dropdown').focusout(function () {-->
+                <!--$(this).removeClass('active');-->
+                <!--$(this).find('.dropdown-menu').slideUp(300);-->
+            <!--});-->
+            <!--$('.dropdown .dropdown-menu li').click(function () {-->
+                <!--$(this).parents('.dropdown').find('span').text($(this).text());-->
+                <!--$(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));-->
+            <!--});-->
+        <!--/*End Dropdown Menu*/-->
+
+                <!--</script>-->
+                <!--<script>-->
+                    <!--$("img").on("contextmenu",function(e){-->
+                        <!--return false;-->
+                    <!--});-->
+                    <!--$("img").mousedown(function(e){-->
+                        <!--e.preventDefault()-->
+                    <!--});-->
+                <!--</script>-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!--making images lazy-->
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+          var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+          if ("IntersectionObserver" in window) {
+            let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+              entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                  let lazyImage = entry.target;
+                  lazyImage.src = lazyImage.dataset.src;
+                  lazyImage.src = lazyImage.src;
+                  lazyImage.classList.remove("lazy");
+                  lazyImageObserver.unobserve(lazyImage);
+                }
+              });
+            });
+
+            lazyImages.forEach(function(lazyImage) {
+              lazyImageObserver.observe(lazyImage);
+            });
+          } else {
+            // Possibly fall back to a more compatible method here
+          }
+        });
+	</script>
+            <!--yeah lazy ends-->
+    </body>
+</html>

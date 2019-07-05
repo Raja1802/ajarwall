@@ -1,0 +1,114 @@
+{% extends 'wall/images.html' %}
+ {% block title %}
+        <title>Ajarwall Collections</title>
+{% endblock %}
+{% block meta_data %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="application-name" content="ajarwall,ajar,Ajar">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="ajarwall,ajar,Ajar">
+        <meta name="msapplication-TileImage" content="">
+        <meta name="msapplication-TileColor" content="#171717">
+        <meta name="theme-color" content="#171717">
+        <meta name="description" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta name="description" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta name="robots" content="index, follow">
+        <meta property="og:url" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta property="og:title" content="Ajarwall | Collections">
+        <meta property="og:description" content="Ajarwall is the collection of the best images website it has over a 500000 images ">
+        <meta property="og:site_name" content="ajarwall">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://gp3.googleusercontent.com/4yA6-ZYoccZf7oAr1l3v4JFjv6-coiJuCoH0yc4RcilS8jxohJuwxfBTSsVA9hLJ-f-6yVPtckUefivO8k2h9v5wR10_k5jqZlnQeWDI183kOKPrJv-4xwOaXq6hUgYMSpinebrf=w1920-h1080">
+        <meta property="og:image:width" content="450">
+        <meta property="og:image:height" content="350">
+        <meta property="og:image:type" content="image/jpeg">
+        <meta http-equiv="content-language" content="en">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        {% endblock %}
+{% block small_carousel %}
+   {% for catlog_small in catlog_small %}
+                    <div id="small_catlog_carousel_cell" class="carousel-cell">
+                        <a href="{% url 'wall:catlog_search' cat_item=catlog_small.catlog_keyword %}">
+                            <img class="carousel-cell-image" src="{{catlog_small.catlog_thumb}}" />
+                            <div class="carousel-cell-image-overlay" >
+                                <h1>{{catlog_small.catlog_name}}</h1>
+                            </div>
+                        </a>
+                    </div>
+    {% endfor %}
+{% endblock %}
+   {% if messages %}
+               <ul>
+                   {% for k in messages %}
+                   <l1 style="color:white;font-size:24px;text-transform:capitalize" >{{ k }}....</l1>
+                   {% endfor %}
+               </ul>
+   {% endif %}
+ {% block catlog_dropdown %}
+           {% for catlog_items in catlog_items %}
+            <a href="{% url 'wall:catlog_search' cat_item=catlog_items.catlog_name %}"><li class="item mdl-menu__item ">{{catlog_items.catlog_name}}</li></a>
+           {% endfor %}
+             <a href="{% url 'wall:catlog_page'  %}" ><li style="background:#b51b1b;color:#fff;" class="item mdl-menu__item ">more</li></a>
+
+{% endblock %}
+ {% block images_gid %}
+
+                        <div class="mdl-grid">
+                            {% for k in result %}
+                                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
+                                        <div class="image_holder">
+                                                <a class="mdl-js-button mdl-js-ripple-effect" href="{% url 'wall:picture_page' pic_id=k.id %}"><img src="{{k.image_thumb}}" alt="k.image_type"></a>
+                                                <a href="{% url 'wall:picture_page' pic_id=k.id %}">
+                                                    <div class="image_overlay">
+                                                        <div class="image_tags" >
+                                                                 <p>
+                                                                    {{k.image_tags}}
+                                                                 <a href="{{k.image_url}}" target="_blank">
+                                                                    <button id="mini_download_fab" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                                                                        <i class="material-icons">&#xe2c4;</i>
+                                                                    </button>
+                                                                </a>
+                                                                </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                    </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- navigation -->
+                       <!-- navigation -->
+            <div class="tab_nav">
+                <!--pagination-->
+                    <div>
+                        <div id="page-container">
+                            <span class="step-links">
+                                {% if result.has_previous %}
+                                    <a id="first-page-tooltip" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect page-buttons" href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i class="material-icons">first_page</i></a>
+                                    <a id="prev-page-tooltip" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect page-buttons" href="?page={{ result.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i class="material-icons">chevron_left</i></a>
+                                {% endif %}
+                                 {% if result.has_next %}
+                                    <span class="current">
+                                        Page {{ result.number }} of {{ result.paginator.num_pages }}.
+                                    </span>
+                                {% endif %}
+                                {% if result.has_next %}
+                                    <a id="next-page-tooltip" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect page-buttons" href="?page={{ result.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i class="material-icons">chevron_right</i></a>
+                                    <a  id="last-page-tooltip" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect page-buttons" href="?page={{ result.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i class="material-icons">last_page</i></a>
+                                {% endif %}
+                            </span>
+                     </div>
+                    </div>
+                        <!--tooltips-->
+                        <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="first-page-tooltip">First Page</div>
+                        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="prev-page-tooltip"> Previous Page</div>
+                        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="next-page-tooltip"> Next Page</div>
+                        <div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="last-page-tooltip"> Last Page</div>
+                        <!--end-->
+    </div>
+<!--endpagination-->
+                    {% endblock %}

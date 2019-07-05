@@ -1,0 +1,240 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <title>Ajarwall | A Jar Of Wallpapers | find free wallpapers and images </title>
+        <!--metadata-->
+         {% block meta_data %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="application-name" content="ajarwall,ajar,Ajar">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="white">
+        <meta name="apple-mobile-web-app-title" content="ajarwall,ajar,Ajar">
+        <meta name="msapplication-TileImage" content="">
+        <meta name="msapplication-TileColor" content="#171717">
+        <meta name="theme-color" content="#171717">
+        <meta name="description" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta name="robots" content="index, follow">
+        <meta property="og:url" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta property="og:title" content="Ajarwall | A Jar Of Wallpapers | Built for you">
+        <meta property="og:description" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta property="og:site_name" content="ajarwall">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://gp3.googleusercontent.com/4yA6-ZYoccZf7oAr1l3v4JFjv6-coiJuCoH0yc4RcilS8jxohJuwxfBTSsVA9hLJ-f-6yVPtckUefivO8k2h9v5wR10_k5jqZlnQeWDI183kOKPrJv-4xwOaXq6hUgYMSpinebrf=w1920-h1080">
+        <meta property="og:image:width" content="650">
+        <meta property="og:image:height" content="350">
+        <meta property="og:image:type" content="image/jpeg">
+        <meta http-equiv="content-language" content="en">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        {% endblock %}
+        <!--end-->
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+         <link rel = "icon" type="image/png" href="https://gp3.googleusercontent.com/VVFp7c_a64jDe2kfSQ8Wi-NXKuyGHyXGButEofpEp4aAIlucxfJhRgtpfQlf4hQ9o3I7Rmb78NlvwZzxGlInSqc6CWHk5rPZjFPNBX393PDCBUiWFM-c8WKXeowfoGjXbLzPmmEk=s32-p-k" >
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" /> 
+        <script src="{% static 'js/flickity.pkgd.min.js' %}" ></script>
+        <link rel="stylesheet" href="{% static 'css/flickity.css' %}">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <!-- home header -->
+       {% for random_head_image in random_head_image %}
+        <div class="ui inverted segment" id="home_header_back_img" style="background-image: url({{random_head_image.image_url}});">
+        {% endfor %}
+         <div id="dimmer_aduster">
+             <!-- header menu -->
+             <nav id="mdl-layout--large-screen-only" class="mdl-navigation mdl-layout--large-screen-only">
+               <div class="home_header">
+                  <a id="mdl-navigation__link" class="title mdl-navigation__link" href="{% url 'wall:home_page' %}">AJARWALL</a>
+                  <a href="{% url 'wall:home_page' %}" class="active nav_item"><div class="active mdl-button mdl-js-button mdl-js-ripple-effect" id="nav_mdl_button">Home</div></a>
+                   <a href="{% url 'wall:catlog_page' %}" class="nav_item"><div class="mdl-button mdl-js-button mdl-js-ripple-effect" id="nav_mdl_button">Collection</div></a>
+                   <a href="{% url 'wall:images_page' %}" class="nav_item"><div class="mdl-button mdl-js-button mdl-js-ripple-effect" id="nav_mdl_button">All Photos</div></a>
+                   <a href="{% url 'wall:explore_page' %}" class="nav_item"><div class="mdl-button mdl-js-button mdl-js-ripple-effect" id="nav_mdl_button">Explore</div></a>
+               <!-- Right aligned menu below button -->
+              </div>
+                  <!-- Left aligned menu below button -->
+                  <div class="small_nav">
+                      <button id="demo-menu-lower-left"
+                      class="mdl-button mdl-js-button mdl-button--icon">
+                      <i class="material-icons">more_vert</i>
+                      </button>
+
+                      <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                      for="demo-menu-lower-left">
+                      <li class="mdl-menu__item">
+                          <a href="{% url 'wall:home_page' %}" class="active nav_item"><div class="active mdl-button mdl-js-button mdl-js-ripple-effect" id="nav_mdl_button">Home</div></a>
+
+                      </li>
+                      <li class="mdl-menu__item mdl-menu__item--full-bleed-divider">
+                          <a href="{% url 'wall:catlog_page' %}" class="active nav_item"><div class="active mdl-button mdl-js-button mdl-js-ripple-effect" id="nav_mdl_button">Collection</div></a>
+
+                      </li>
+                      <li disabled class="mdl-menu__item">
+                          <a href="{% url 'wall:images_page' %}" class="active nav_item"><div class="active mdl-button mdl-js-button mdl-js-ripple-effect" id="nav_mdl_button">All Photos</div></a>
+
+                      </li>
+                      <li class="mdl-menu__item">
+                          <a href="{% url 'wall:explore_page' %}" class="active nav_item"><div class="active mdl-button mdl-js-button mdl-js-ripple-effect" id="nav_mdl_button">Explore</div></a>
+
+                      </li>
+                      </ul>
+                    </div>
+               </nav>
+               <!-- end -->
+               <!-- header content -->
+               <div class="mdl-grid " id="header_content_grid">
+                    <div id="header_first_text"  class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                        <h1 >Free stock photos for websites and commercial use</h1>  
+                    </div>
+                    <div id="header_second_text"  class="header_second_text mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                            <h2>Download free, high-resolution images</h2>  
+                     </div>
+                     <div class="top_search_fied_holder mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone" >
+                            <div class="top_search_field" >
+                                <form method="GET" action="{% url 'wall:search' %}" >
+                                    <input autocomplete="off" name="q" value="{{request.GET.q}}" type="text" class="textbox" placeholder="Search images, pics, wallpapers more...">
+                                  </form>
+                            </div>
+                      </div>
+                      <div id="header_third_text"  class="header_second_text mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                            <p>
+                                Try:
+                                {% for popular_item in popular_item %}
+                                    <a href="{% url 'wall:catlog_search' cat_item=popular_item.catlog_keyword %}">{{popular_item.catlog_name}}</a>,
+                                {% endfor %}
+                                ...
+
+                            </p>
+                            
+                      </div>
+                      
+                  <!-- end -->
+         </div>
+         <div class="down_nav_button_div">
+            <span class="scroll-btn">
+                <a href="#content">
+                  <span class="mouse">
+                    <span>
+                    </span>
+                  </span>
+                </a>
+              </span>
+        </div>
+         </div>
+        <!-- end -->
+        <main id="content" class="mdl-layout__content">
+        <!-- main content -->
+        <div class="main_content">
+            <!-- top_carousel -->
+                <div class="mdl-grid" id="header_carousel_grid">
+                        <div id="carousel_big_text" class=" mdl-cell mdl-cell--12-col ">
+                                <h1>Top free pics Just for you</h1>
+                        </div>
+                        <div id="carousel_medium_text" class=" mdl-cell mdl-cell--10-col  mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                <h4>Stunning images, perfect for your mobile and desktop background</h4>
+                        </div>
+                        <div id="carousel_medium_button" class="mdl-cell mdl-cell--2-col  mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                <a href="{% url 'wall:images_page' %}">more wallpapers</a>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                                        <div id="header_carousel" class="carousel" data-flickity='{ 
+                                            "wrapAround": true, 
+                                            "pageDots": false, 
+                                            "imagesLoaded": true
+                                        }'>
+                                        {% for latest_uploaded in latest_uploaded %}
+                                         <div id="header_carousel_cell" class="carousel-cell"><a class="mdl-js-button mdl-js-ripple-effect" href="{% url 'wall:picture_page' pic_id=latest_uploaded.id %}"><img class="carousel-cell-image" src="{{latest_uploaded.image_thumb}}" /></a></div>
+                                        {% endfor %}
+                                        </div>
+                        </div>
+                 </div>
+                 <!-- catlog section -->
+                 <div class="mdl-grid" id="catlog_holding_grid">
+                        <div id="carousel_big_text" class=" mdl-cell mdl-cell--12-col">
+                                <h1>Browse high-resolution photo collections</h1>
+                        </div>
+                        <div id="carousel_medium_text" class=" mdl-cell mdl-cell--10-col  mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                <h4>Explore our collection by category</h4>
+                        </div>
+                        <div id="carousel_medium_button" class="mdl-cell mdl-cell--2-col  mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                <a href="{% url 'wall:catlog_page' %}">more catlog</a>
+                        </div>
+                     {% for catlog_item in catlog_item %}
+                        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet  mdl-cell--12-col-phone" >
+                              <div class="thumbnail-holder">
+                                <img class="lazy" src="https://lh3.googleusercontent.com/hJf9PWZ_lHAEw443mIfaAxO9eJcD82CIhqKESGpc7b9lqNjsa6tPl2Dv4cf8ZP4EMGqbY23S1GEYaLs_LYZSECyamRWpLyAiQIvbthbnnUpXzz6EvOp2b7iuRFEhM3_USlcJwZKK=w1920-h1080" data-src="{{catlog_item.catlog_thumb}}" alt="">
+                                 <a href="{% url 'wall:catlog_search' cat_item=catlog_item.catlog_keyword %}"><div class="overlay-layer">
+                                  <h6 class="release_time" >{{catlog_item.catlog_name}}</h6>
+                                </div></a>
+                              </div>
+                       </div>
+                     {% endfor %}
+
+            </div>
+        <!-- end -->
+            <!-- recent posts section -->
+        <div id="recent_post_grid" class="mdl-grid">
+              <div id="carousel_big_text" class=" mdl-cell mdl-cell--12-col ">
+                  <h1>Below Are Some of Our Featured Wallpapers</h1>
+              </div>
+            {% for images_data in images_data %}
+                    <div id="recent_post_item" class="mdl-cell mdl-cell--4-col">
+
+                              <a href="{% url 'wall:picture_page' pic_id=images_data.id %}">
+                                  <img class="lazy" src="https://lh3.googleusercontent.com/hJf9PWZ_lHAEw443mIfaAxO9eJcD82CIhqKESGpc7b9lqNjsa6tPl2Dv4cf8ZP4EMGqbY23S1GEYaLs_LYZSECyamRWpLyAiQIvbthbnnUpXzz6EvOp2b7iuRFEhM3_USlcJwZKK=w1920-h1080" data-src="{{images_data.image_thumb}}" alt="">
+                              </a>
+                    </div>
+            {% endfor %}
+              <div class="discover_more_button">
+                     <a href="{% url 'wall:images_page' %}">Discover More</a>
+              </div>
+        </div>
+        <!-- end -->
+</div>
+      <footer class="mdl-mini-footer" style="background:#000;">
+          <div class="mdl-mini-footer__left-section">
+              <a id="mdl-navigation__link" class="title mdl-navigation__link" href="{% url 'wall:home_page'%}">AJARWALL</a>
+            <ul class="mdl-mini-footer__link-list">
+              <!--<li><a href="#">Help</a></li>-->
+              <!--<li><a href="#">Privacy & Terms</a></li>-->
+            </ul>
+          </div>
+        </footer>
+    </main>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <!--making images lazy-->
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+          var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+          if ("IntersectionObserver" in window) {
+            let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+              entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                  let lazyImage = entry.target;
+                  lazyImage.src = lazyImage.dataset.src;
+                  lazyImage.src = lazyImage.src;
+                  lazyImage.classList.remove("lazy");
+                  lazyImageObserver.unobserve(lazyImage);
+                }
+              });
+            });
+
+            lazyImages.forEach(function(lazyImage) {
+              lazyImageObserver.observe(lazyImage);
+            });
+          } else {
+            // Possibly fall back to a more compatible method here
+          }
+        });
+	</script>
+            <!--yeah lazy ends-->
+    </body>
+</html>

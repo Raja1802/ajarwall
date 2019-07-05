@@ -1,0 +1,93 @@
+{% extends 'wall/base.html' %}
+ {% block title %}
+        <title>Ajarwall Collections</title>
+{% endblock %}
+{% block meta_data %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="application-name" content="ajarwall,ajar,Ajar">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="ajarwall,ajar,Ajar">
+        <meta name="msapplication-TileImage" content="">
+        <meta name="msapplication-TileColor" content="#171717">
+        <meta name="theme-color" content="#171717">
+        <meta name="description" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta name="description" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta name="robots" content="index, follow">
+        <meta property="og:url" content="http://ajarwall.ga/c/">
+        <meta property="og:title" content="Ajarwall | Collections">
+        <meta property="og:description" content="Ajarwall is the collection of the best images website it has over a 500000 images ">
+        <meta property="og:site_name" content="ajarwall">
+        <meta property="og:type" content="website">
+        <meta property="og:image:width" content="450">
+        <meta property="og:image:height" content="350">
+        <meta property="og:image:type" content="image/jpeg">
+        <meta http-equiv="content-language" content="en">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        {% endblock %}
+        <!--end-->
+{% block main_content %}
+ <!--metadata-->
+
+                <main class="mdl-layout__content">
+                <div class="page-content">
+                        <!-- catlog grid -->
+                       <div class="wrapper">
+                                    <div class="cat-main-container">
+                                                <div class="content">
+                                                      <div class="about-content-wrapper">
+                                                             <h2 class="about-content-name">Popular collections of images</h2>
+                                                         <h4 class="about-content">Browse our most popular collections of stock photos. We're constantly adding new pictures to seasonal and trending categories. All our images are for personal and commercial use.</h4>
+                                                      </div>
+                                                </div>
+                                    {% for catlog_item in catlog_item %} <!--{% url 'wall:catlog_search' cat_item=catlog_item.catlog_keyword %}-->
+                                            <a class="cat-container-link" href="{% url 'wall:catlog_search' cat_item=catlog_item.catlog_keyword %}" >
+                                                <div class="cat-container">
+                                                  <img src="{{catlog_item.catlog_thumb}}" alt="tulip" /><!--class="mdl-js-button mdl-js-ripple-effect"-->
+                                                <div  class="mdl-js-button mdl-js-ripple-effect cat-overlay">
+                                                    <h1 class="cat-img-text">{{catlog_item.catlog_name}}</h1>
+                                                </div>
+                                                </div>
+                                            </a>
+                                        {% endfor %}
+
+                                        </div>
+                               </div>
+                        <!-- navigation -->
+                     <!-- navigation -->
+            <div class="tab_nav">
+                <!--pagination-->
+                    <div>
+                        <div id="page-container">
+                            <span class="step-links">
+                                {% if catlog_item.has_previous %}
+                                    <a id="first-page-tooltip" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect page-buttons" href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i class="material-icons">first_page</i></a>
+                                    <a id="prev-page-tooltip" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect page-buttons" href="?page={{ catlog_item.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i class="material-icons">chevron_left</i></a>
+                                {% endif %}
+                                 {% if catlog_item.has_next %}
+                                    <span class="current">
+                                        Page {{ catlog_item.number }} of {{ catlog_item.paginator.num_pages }}.
+                                    </span>
+                                {% endif %}
+                                {% if catlog_item.has_next %}
+                                    <a id="next-page-tooltip" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect page-buttons" href="?page={{ catlog_item.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i class="material-icons">chevron_right</i></a>
+                                    <a  id="last-page-tooltip" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect page-buttons" href="?page={{ catlog_item.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i class="material-icons">last_page</i></a>
+                                {% endif %}
+                            </span>
+                     </div>
+                    </div>
+                        <!--tooltips-->
+                        <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="first-page-tooltip">First Page</div>
+                        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="prev-page-tooltip"> Previous Page</div>
+                        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="next-page-tooltip"> Next Page</div>
+                        <div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="last-page-tooltip"> Last Page</div>
+                        <!--end-->
+    </div>
+<!--endpagination-->
+                        <!-- end -->
+                        <!-- end -->
+
+                </div>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'wall/base.html' %}
+ {% block title %}
+        <title>Ajarwall {{picture_data.image_type}}</title>
+{% endblock %}
+{% block meta_data %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="application-name" content="ajarwall,ajar,Ajar">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="ajarwall,ajar,Ajar">
+        <meta name="msapplication-TileImage" content="">
+        <meta name="msapplication-TileColor" content="#171717">
+        <meta name="theme-color" content="#171717">
+        <meta name="description" content="free images from the ajarwall we update every day and post beautiful images for you">
+        <meta name="keywords" content="{{picture_data.image_type}}, {{picture_data.image_tags}}, free images, wallpapers, free wallpapers, hd wallpapers, free 4k wallpapers">
+        <meta name="robots" content="index, follow">
+        <meta property="og:url" content="http://ajarwall.ga{% url 'wall:picture_page' pic_id=picture_data.id %}">
+        <meta property="og:title" content="Ajarwall | {{picture_data.image_type}}">
+        <meta property="og:description" content="{{picture_data.image_type}} Ajarwall is the collection of the best images website it has over a 500000 images ">
+        <meta property="og:site_name" content="ajarwall">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="{{picture_data.image_url}}">
+        <meta property="og:image:width" content="850">
+        <meta property="og:image:height" content="550">
+        <meta property="og:image:type" content="image/jpeg">
+        <meta http-equiv="content-language" content="en">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        {% endblock %}
+{% block main_content %}
+                <main class="mdl-layout__content">
+                <div class="page-content">
+                    <!-- image grid -->
+                    <div id="picture_grid" class="mdl-grid">
+                             <!-- image -->
+                            <div id="picture_grid_item" class="mdl-cell mdl-cell--10-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                <img src="{{picture_data.image_url}}" alt="{{picture_data.image_type}}">
+                            </div>
+                            <!-- end -->
+                               <!-- content  -->
+                               <div id="" class="mdl-cell mdl-cell--2-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                    <div id="image_catlog">
+                                        <h1>Image Type :</h1>
+                                        <h6>{{picture_data.image_type}}</h6>
+                                    </div>
+                                    <div id="image_catlog_2">
+                                            <h1>Get image :</h1>
+                                            <a href="{{picture_data.image_url}}" target="_blank" >Download</a>
+                                           
+                                    </div>
+                                    <div id="image_catlog_3">
+                                            <h1>Image Tags :</h1>
+                                            <h6>{{picture_data.image_tags}}</h6>
+                                    </div>
+                                    <div id="image_catlog_4">
+                                            <h1>Share image :</h1>
+                                            <a href=""><img src="" alt=""></a>
+                                            <a href=""><img src="" alt=""></a>
+                                            <a href=""><img src="" alt=""></a>
+                                            <a href=""><img src="" alt=""></a>
+                                    </div>
+                             </div>
+                             <!-- end -->
+                    </div>
+                     <!-- end -->
+                     <!-- suggestions grid -->
+                     <div id="sugg_grid" class="mdl-grid">
+                            <div id="carousel_big_text" class=" mdl-cell mdl-cell--12-col">
+                                    <h1>Similar</h1>
+                            </div>
+                            <div id="carousel_medium_text" class=" mdl-cell mdl-cell--10-col  mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                    <h4>similar for you</h4>
+                            </div>
+                            <div id="carousel_medium_button" class="mdl-cell mdl-cell--2-col  mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                    <a href="{% url 'wall:images_page' %}">more featured</a>
+                            </div>
+                            <div class="mdl-cell mdl-cell--12-col">
+                                    <div id="sugg_catlog_carousel" class="carousel" data-flickity='{ "freeScroll": true, "wrapAround": true, "pageDots": false, "selectedAttraction": 0.01, "friction": 0.15 }'>
+                                        {% for random_image in random_image %}
+                                       <div id="sugg_catlog_carousel_cell" class="carousel-cell">
+                                            <a href="{% url 'wall:picture_page' pic_id=random_image.id %}">
+                                                <img class="sugg_carousel-cell-image" src="{{random_image.image_thumb}}" />
+                                                <div class="sugg_carousel-cell-image-overlay" >
+                                                </div>
+                                            </a>
+                                       </div>
+                                        {% endfor %}
+
+                                </div>
+                            </div>
+                    </div>
+                     <!-- end -->
+                    <!-- small carousle catlog -->
+                    <div class="mdl-grid">
+                            <div id="carousel_big_text" class=" mdl-cell mdl-cell--12-col">
+                                    <h1>Catlogs</h1>
+                            </div>
+                            <div id="carousel_medium_text" class=" mdl-cell mdl-cell--10-col  mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                    <h4>explore our catlogs</h4>
+                            </div>
+                            <div id="carousel_medium_button" class="mdl-cell mdl-cell--2-col  mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                                    <a href="{% url 'wall:catlog_page' %}">more catlog</a>
+                            </div>
+                            <div class="mdl-cell mdl-cell--12-col">
+                                    <div id="small_catlog_carousel" class="carousel" data-flickity='{ 
+                                        "wrapAround": true, 
+                                        "pageDots": false, 
+                                        "imagesLoaded": true
+                                    }'>
+               {% for catlog_item in catlog_item %}
+                        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet  mdl-cell--12-col-phone" >
+                              <div class="thumbnail-holder">
+                                <img src="{{catlog_item.catlog_thumb}}" alt="catlog_item.catlog_name">
+                                 <a href="{% url 'wall:catlog_search' cat_item=catlog_item.catlog_keyword %}"><div class="overlay-layer">
+                                  <h6 class="release_time" >{{catlog_item.catlog_name}}</h6>
+                                </div></a>
+                              </div>
+                       </div>
+                 {% endfor %}
+                                    
+                                </div>
+                            </div>
+                    </div>
+                     <!-- end carousel -->
+                     
+                </div>
+{% endblock %}
