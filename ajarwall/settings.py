@@ -89,9 +89,9 @@ WSGI_APPLICATION = 'ajarwall.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql_cymysql',
-        'NAME': '4MK7FjW26R',
-        'USER': '4MK7FjW26R',
-        'PASSWORD': 'lu8AFQvIbI',
+        'NAME': 'iBexFZKvn2',
+        'USER': 'iBexFZKvn2',
+        'PASSWORD': '9PS7xJv4n3',
         'HOST': 'remotemysql.com',
         'PORT': '3306'
     }
